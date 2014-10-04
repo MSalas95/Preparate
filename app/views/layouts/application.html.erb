@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Preparate</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>	
+
+	<div class="row">
+
+	<div class="logo"></div>
+
+	</div>
+
+		<div class="row"> 
+			<nav id="navigation">
+
+				<ul>
+					<li><%= link_to "Inicio", root_path %></li>
+					<li><%= link_to "Acerca",  pages_acerca_path%></li>
+					<li><%= link_to "Contacto", pages_contacto_path  %></li>
+
+					<% if user_signed_in? %>
+						<li>Logueado como <strong><%= current_user.email %></strong></li>
+						<li><%= link_to 'Editar perfil',edit_user_registration_path %> </li>
+						<li><% link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+					<%else%>
+						<li><%= link_to 'Sign up', new_user_registration_path %></li>
+						<li><%= link_to 'Login', new_user_session_path %></li>
+					<% end %>
+
+				</ul>
+
+			</nav>
+		</div>
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+
+					
+		<div class="row">
+			<%= yield %>
+		</div>
+
+	</body>
+</html>
